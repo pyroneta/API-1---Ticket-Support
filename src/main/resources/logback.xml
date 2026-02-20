@@ -1,0 +1,61 @@
+<configuration>
+
+    <!-- Nombre de la aplicación (se usa para nombrar el archivo de log) -->
+    <property name="APP_NAME" value="api1"/>
+
+    <!-- Carpeta donde se guardarán los logs -->
+    <property name="LOG_DIR" value="logs"/>
+
+
+    <!-- Imprime los logs en la consola cuando la app está corriendo -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- Formato del log:
+                 fecha | nivel | hilo | clase | mensaje -->
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+
+
+    <!-- Guarda los logs en un archivo físico (.log) -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <!-- Archivo principal donde se escriben los logs -->
+        <file>${LOG_DIR}/${APP_NAME}.log</file>
+
+        <!-- Política de rotación:
+             Crea un nuevo archivo cada día -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+
+            <!-- Nombre de los archivos históricos por fecha -->
+            <fileNamePattern>
+                ${LOG_DIR}/${APP_NAME}.%d{yyyy-MM-dd}.log
+            </fileNamePattern>
+
+            <!-- Guarda máximo 14 días de logs antiguos -->
+            <maxHistory>14</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <!-- Mismo formato que en consola -->
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+
+
+    <!-- Nivel mínimo de logs que se registrarán -->
+    <root level="DEBUG">
+
+        <!-- Enviar logs tanto a consola como a archivo -->
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+
+    </root>
+
+</configuration>

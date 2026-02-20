@@ -14,6 +14,8 @@
     </properties>
     
     <dependencies>
+
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -26,11 +28,27 @@
             <artifactId>miglayout</artifactId>
             <version>3.7.4</version>
         </dependency>
+        <!-- SLF4J API (la interfaz) -->
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.16</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.16</version>
         </dependency>
+
+        <!-- Logback (la implementación) -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.6</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.4</version>
+        </dependency>
+
 
         <dependency>
 
@@ -38,6 +56,9 @@
             <artifactId>gson</artifactId>
             <version>2.12.1</version>
         </dependency>
+
+
+
 
     </dependencies>
     
