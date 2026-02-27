@@ -6,12 +6,21 @@ import java.sql.SQLException;
 
 public class DBConnection {
 
-    private static final String URL =
-            "jdbc:postgresql://localhost:5432/ticketmaster";
-    private static final String USER = "postgres";
-    private static final String PASS = "NuevaContraseñaFuerte123!";
+    private static String getEnv(String key, String defaultValue) {
+        String value = System.getenv(key);
+        return (value == null) ? defaultValue : value;
+    }
 
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASS);
+
+        String host = getEnv("DB_HOST", "localhost");
+        String port = getEnv("DB_PORT", "5432");
+        String db   = getEnv("DB_NAME", "ticketmaster");
+        String user = getEnv("DB_USER", "postgres");
+        String pass = getEnv("DB_PASSWORD", "");
+
+        String url = "jdbc:postgresql://" + host + ":" + port + "/" + db;
+
+        return DriverManager.getConnection(url, user, pass);
     }
 }

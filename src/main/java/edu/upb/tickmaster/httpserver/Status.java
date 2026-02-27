@@ -42,7 +42,7 @@ public enum Status {
 	_414("414 Request-URI Too Large"), //
 	_415("415 Unsupported Media Type"), //
 	_416("416 Requested range not satisfiable"), //
-	_417("417 Expectation Failed"), //
+	_417("417 Expectation Failed"), //debo implementar lo siguiente en mi proyecto, cuando mi proxy reciba un connect_timeout debe responder con el codigo de error 502
 	_500("500 Internal Server Error"), //
 	_501("501 Not Implemented"), //
 	_502("502 Bad Gateway"), //
