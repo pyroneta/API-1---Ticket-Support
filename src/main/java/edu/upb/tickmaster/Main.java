@@ -1,9 +1,12 @@
 package edu.upb.tickmaster;
 
+import edu.upb.tickmaster.grpc.ProtoServer;
 import edu.upb.tickmaster.httpserver.ApacheServer;
 
-public class    Main {
-    public static void main(String[] args) {
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) throws IOException, InterruptedException {
         ApacheServer apacheServer = new ApacheServer();
         boolean ok = apacheServer.start();
         System.out.println("Start() returned: " + ok);
@@ -15,6 +18,8 @@ public class    Main {
             System.out.println("No se pudo registrar al balanceador " + e.getMessage());
             e.printStackTrace();
         }
+        ProtoServer protoServer = new ProtoServer();
+        protoServer.start();
     }
 
 }

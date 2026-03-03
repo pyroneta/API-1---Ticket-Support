@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package tickmaster;
+
+option java_package = "edu.upb.tickmaster.grpc";
+option java_multiple_files = true;
+
+// =====================
+// PRODUCTOS
+// =====================
+service ProductoService {
+  rpc registrarProducto (ProductoRequest) returns (ProductoResponse);
+  rpc obtenerProducto (IdRequest) returns (ProductoRequest);
+}
+
+enum Categoria {
+  ELECTRONICA = 0;
+  ALIMENTOS = 1;
+  VESTIMENTA = 2;
+  OTROS = 3;
+}
+
+message ProductoRequest {
+  string id = 1;
+  string nombre = 2;
+  string descripcion = 3;
+  double precio = 4;
+  int32 stock = 5;
+  Categoria categoria = 6;
+}
+
+message ProductoResponse {
+  string codigo_respuesta = 1;
+  string mensaje = 2;
+  string timestamp = 3;
+}
+
+// Request genérico por id
+message IdRequest {
+  string id = 1;
+}
+
+// =====================
+// TICKETS
+// =====================
+service TicketService {
+  rpc crearTicket (CrearTicketRequest) returns (TicketResponse);
+  rpc obtenerTicket (IdRequest) returns (TicketResponse);
+  rpc listarTickets (Empty) returns (TicketListResponse);
+}
+
+message CrearTicketRequest {
+  string titulo = 1;
+  string nombre_cliente = 2;
+}
+
+message TicketResponse {
+  string id = 1;
+  string titulo = 2;
+  string nombre_cliente = 3;
+
+  string codigo_respuesta = 10;
+  string mensaje = 11;
+  string timestamp = 12;
+}
+
+message Empty {}
+
+
+message TicketItem {
+  string id = 1;
+  string titulo = 2;
+  string nombre_cliente = 3;
+}
+
+message TicketListResponse {
+  repeated TicketItem tickets = 1;
+
+  string codigo_respuesta = 10;
+  string mensaje = 11;
+  string timestamp = 12;
+}
+
