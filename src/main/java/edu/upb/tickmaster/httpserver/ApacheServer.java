@@ -7,12 +7,7 @@ package edu.upb.tickmaster.httpserver;
 
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpServer;
-import edu.upb.tickmaster.Handler.EchoPostHandler;
-import edu.upb.tickmaster.Handler.UsuariosHandler;
-import edu.upb.tickmaster.Handler.TicketHandler;
-import edu.upb.tickmaster.Handler.HealthHandler;
-
-
+import edu.upb.tickmaster.Handler.*;
 
 
 import java.io.*;
@@ -44,6 +39,10 @@ public class ApacheServer {
             this.server.createContext("/hola", new EchoPostHandler());
             this.server.createContext("/usuarios", new UsuariosHandler());
             this.server.createContext("/tickets", new TicketHandler());
+            this.server.createContext("/login", new AuthHandler());
+            this.server.createContext("/events", new EventsHandler());
+
+            this.server.createContext("/events-with-types", new EventWithTypesHandler());
 
             this.server.setExecutor(Executors.newFixedThreadPool(2));
             this.server.start();

@@ -47,6 +47,7 @@ service TicketService {
   rpc crearTicket (CrearTicketRequest) returns (TicketResponse);
   rpc obtenerTicket (IdRequest) returns (TicketResponse);
   rpc listarTickets (Empty) returns (TicketListResponse);
+  rpc editarTicket (IdRequest) returns (TicketEditResponse);
 }
 
 message CrearTicketRequest {

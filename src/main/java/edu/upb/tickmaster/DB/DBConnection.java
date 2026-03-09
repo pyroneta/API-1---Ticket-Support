@@ -15,7 +15,7 @@ public class DBConnection {
 
         String host = getEnv("DB_HOST", "localhost");
         String port = getEnv("DB_PORT", "5432");
-        String db   = getEnv("DB_NAME", "ticketmaster");
+            String db   = getEnv("DB_NAME", "project_tickets");
         String user = getEnv("DB_USER", "postgres");
         String pass = getEnv("DB_PASSWORD", "");
 
